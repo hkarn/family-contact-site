@@ -11,6 +11,7 @@ window.addEventListener('load', function() {
 function sendContactForm(event) {
   event.preventDefault();
   document.getElementById("contact-submit").disabled = true;
+  $("#form-messages").text("Sending...");
 
 
   var formData = $("#contact-form").serialize();
@@ -23,11 +24,7 @@ function sendContactForm(event) {
     data: formData,
     statusCode: {
       404:function(){
-        if (document.getElementsByTagName('html')[0].getAttribute('lang') === "sv") {
-          $(formMessages).text('Oops! Det är något fel på servern och dit meddelande kunde inte skickas.');
-        } else {
-          $(formMessages).text('Oops! An error occured and your message could not be sent.');
-        };
+        $(formMessages).text('Oops! An error occured and your message could not be sent.');
       }
     }
 
