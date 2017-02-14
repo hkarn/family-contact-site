@@ -57,12 +57,12 @@
   <section class="contact">
     <h3 class="center">Contact us</h3>
     <?php include 'includes/contact-form.php'; ?>
-    <p class="center"><a href="https://arnoldson.net/files/keys/hka.asc" target="blank">PGP/GPG key</a></p>
+    <p class="center"><a href="https://arnoldson.net/files/keys/hka.asc" target="_blank">PGP/GPG key</a></p>
   </section>
 
   <footer class="center">
     <time itemprop="startDate" datetime="2017-02-14" pubdate="true"></time>
-    <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><i class="fa fa-creative-commons fa-1" aria-hidden="true"></i></a> &amp; <a href="https://github.com/hkarn/family-contact-site">MIT</a> Håkan Arnoldson.
+    Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><i class="fa fa-creative-commons fa-1" aria-hidden="true"></i></a> &amp; <a href="https://github.com/hkarn/family-contact-site">MIT</a> by Håkan Arnoldson. Hosted on Iceland by <a href="https://1984hosting.com/" target="_blank">1984 ehf</a>.
   </footer>
 
   <script src="dependencies/jquery-3.1.1/js/jquery-3.1.1.js"></script>
