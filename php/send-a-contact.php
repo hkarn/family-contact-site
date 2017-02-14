@@ -112,7 +112,7 @@
     };
 
     $recipient = "form1@arnoldson.net";
-    $subject = "Arnoldson.net from" . $name;
+    $subject = "Arnoldson.net from " . $name;
     $email_content = "Name: " . $name . "\r\n";
     $email_content .= "Email: " . $email . "\r\n\r\n";
     $email_content .= "Message:\r\n" . $message . "\r\n";

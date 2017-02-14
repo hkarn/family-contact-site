@@ -34,7 +34,7 @@ function generateRandomString($length = 10) {
 <div class="contact-form-container">
   <form id="contact-form" action="php/send-a-contact.php" method="post">
     <input id="form-hidden" name="token" type="hidden" value="<?php echo $token; ?>">
-    <input id="form-url" name="url" type="url" placeholder="Website" value="">
+    <input id="form-url" name="url" type="url" value="">
     <fieldset>
       <input id="form-name" name="name" placeholder="Your name" type="text" tabindex="1" required>
     </fieldset>
