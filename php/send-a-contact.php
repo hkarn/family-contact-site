@@ -7,6 +7,11 @@
   $username = "username";
   $password = "password";
   $dbname = "myDB";
+
+  $reCAPTCHAkey = "CAPTCHA_KEY";
+  $domain = "example.com";
+  $mailto = "to@example.com";
+  $mailfrom = "from@example.com";
   */
 
 
@@ -69,7 +74,7 @@
 
   $referer = $_SERVER['HTTP_REFERER'];
   $origin = $_SERVER['HTTP_ORIGIN'];
-  $mydomain = 'arnoldson.net';
+  $mydomain = $domain;
 
   if (!strpos($referer, $mydomain) AND !strpos($origin, $mydomain)) {
     //If neither origin or referer. Very simple abuse check and dont want to rely on origin yet (not implimented).
@@ -85,7 +90,7 @@
     exit;
   }
 
-  if ($_SESSION['from'] !== "arnoldson.net") {
+  if ($_SESSION['from'] !== $domain) {
     //check our open reference
     http_response_code(403);
     echo "403 - Unauthorized request.";
@@ -116,7 +121,7 @@
 
     $post_data = http_build_query(
       array(
-        'secret' => '6LcBg9wSAAAAADpS6eyj9mZdZPhyGCO9FDQK4Vmc',
+        'secret' => $reCAPTCHAkey_secret,
         'response' => $_POST['g-recaptcha-response'],
         'remoteip' => $_SERVER['REMOTE_ADDR']
       )
@@ -138,7 +143,7 @@
 
 //RECAPTCA END
 
-    $recipient = "form1@arnoldson.net";
+    $recipient = $mailto;
     $subject = "Arnoldson.net from " . $name;
     $email_content = "Name: " . $name . "\r\n";
     $email_content .= "Email: " . $email . "\r\n\r\n";
@@ -159,11 +164,11 @@
       exit;
     };
 
-    $email_headers = "From: Arnoldson.net <formmailer@arnoldson.net>\r\n";
+    $email_headers = "From: Arnoldson.net <" . $mailfrom . ">\r\n";
     $email_headers .= "Reply-To: " . $name . "<" . $email . ">\r\n";
     $email_headers .= "Content-Type: text; charset=utf-8\r\n";
-    $email_headers .= "Return-Path: <form1@arnoldson.net>\r\n";
-    $email_headers .= "Errors-To: <form1@arnoldson.net>\r\n";
+    $email_headers .= "Return-Path: <" . $mailto . ">\r\n";
+    $email_headers .= "Errors-To: <" . $mailto . ">\r\n";
 
     if (mail($recipient, $subject, $email_content, $email_headers)) {
 

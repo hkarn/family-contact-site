@@ -1,5 +1,7 @@
 <?php
 
+//Requires spamcheckDBvariable.php to be included before, or recaptha key to be intered below.
+
 function generateRandomString($length = 10) {
   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   $charactersLength = strlen($characters);
@@ -19,7 +21,7 @@ function generateRandomString($length = 10) {
     //user either dont have a session or been inactive for more then 40 minutes
     $_SESSION['token'] = $token;
     $_SESSION['timestamp'] = time();
-    $_SESSION['from'] = "arnoldson.net";
+    $_SESSION['from'] = $domain;
     $_SESSION['formsenttime'] = 0;
     $_SESSION['lastcontent'] = "";
     $_SESSION['numberofsends'] = 0;
@@ -45,7 +47,7 @@ function generateRandomString($length = 10) {
       <textarea id="form-message" name="message" placeholder="Your message...." tabindex="3" required></textarea>
     </fieldset>
     <fieldset>
-      <div class="g-recaptcha" data-sitekey="6LcBg9wSAAAAANOYaHAwrEmdWplz_-Gpb-3TpDcg"></div>
+      <div class="g-recaptcha" data-sitekey="<?php echo $reCAPTCHAkey_public; ?>"></div>
     </fieldset>
     <fieldset>
       <button name="submit" type="submit" id="contact-submit" data-submit="Sending..." tabindex="4">Send message</button>

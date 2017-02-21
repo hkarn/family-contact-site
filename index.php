@@ -56,7 +56,10 @@
 
   <section class="contact">
     <h3 class="center">Contact us</h3>
-    <?php include 'includes/contact-form.php'; ?>
+    <?php
+      include 'php/spamcheckDBvariable.php';
+      include 'includes/contact-form.php';
+    ?>
     <p class="center"><a href="https://arnoldson.net/files/keys/hka.asc" target="_blank">PGP/GPG key</a></p>
   </section>
 
