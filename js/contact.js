@@ -24,6 +24,7 @@ function sendContactForm(event) {
     data: formData,
     statusCode: {
       404:function(){
+        grecaptcha.reset();
         $(formMessages).text('Oops! An error occured and your message could not be sent.');
       }
     }
@@ -58,6 +59,7 @@ function sendContactForm(event) {
         el1.value = "";
         el2.value = "";
         el3.value = "";
+        grecaptcha.reset();
       }, 9000);
     })
     .fail(function(data) {
@@ -67,6 +69,7 @@ function sendContactForm(event) {
 
       //exit prevent double click
       setTimeout(function(){
+        grecaptcha.reset();
         document.getElementById("contact-submit").disabled = false;
       }, 2000);
 

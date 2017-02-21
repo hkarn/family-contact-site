@@ -45,6 +45,9 @@ function generateRandomString($length = 10) {
       <textarea id="form-message" name="message" placeholder="Your message...." tabindex="3" required></textarea>
     </fieldset>
     <fieldset>
+      <div class="g-recaptcha" data-sitekey="6LcBg9wSAAAAANOYaHAwrEmdWplz_-Gpb-3TpDcg"></div>
+    </fieldset>
+    <fieldset>
       <button name="submit" type="submit" id="contact-submit" data-submit="Sending..." tabindex="4">Send message</button>
       <div id="form-messages"></div>
     </fieldset>

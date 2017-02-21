@@ -9,6 +9,7 @@
   $dbname = "myDB";
   */
 
+
   $userip = sha1($_SERVER['REMOTE_ADDR']);
   $timestamp = date('Y-m-d G:i:s');
 
@@ -111,6 +112,32 @@
       exit;
     };
 
+    //RECAPTA START Check I am not a robot recaptcha
+
+    $post_data = http_build_query(
+      array(
+        'secret' => '6LcBg9wSAAAAADpS6eyj9mZdZPhyGCO9FDQK4Vmc',
+        'response' => $_POST['g-recaptcha-response'],
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+      )
+    );
+    $opts = array('http' =>
+      array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => $post_data
+      )
+    );
+    $context  = stream_context_create($opts);
+    $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+    $result = json_decode($response);
+    if (!$result->success) {
+      echo "reCAPTCHA verification failed, please try contacting us thru social media instead.";
+      exit;
+    }
+
+//RECAPTCA END
+
     $recipient = "form1@arnoldson.net";
     $subject = "Arnoldson.net from " . $name;
     $email_content = "Name: " . $name . "\r\n";
@@ -135,6 +162,8 @@
     $email_headers = "From: Arnoldson.net <formmailer@arnoldson.net>\r\n";
     $email_headers .= "Reply-To: " . $name . "<" . $email . ">\r\n";
     $email_headers .= "Content-Type: text; charset=utf-8\r\n";
+    $email_headers .= "Return-Path: <form1@arnoldson.net>\r\n";
+    $email_headers .= "Errors-To: <form1@arnoldson.net>\r\n";
 
     if (mail($recipient, $subject, $email_content, $email_headers)) {
 
@@ -161,5 +190,7 @@
     echo "403 - Forbidden request.";
     exit;
   }
+
+
 
 ?>
