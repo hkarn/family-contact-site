@@ -4,4 +4,4 @@ The contact form has a few simple safeguards. There is a url field that gets hid
 
 There is also a IP based spam filter. Each senders IP get sha1-hashed and then saved in a database, they are purged if they are older then 10 hours and the matches are counted.
 
-For low traffic sites this form should have sufficent safeguards, if a problem with spam occurs I would recommend just switching to verify submissions with Googles reCAPTCHA.
+Googles reCAPTCHA was added due to some sporadic bot posting getting thru.
