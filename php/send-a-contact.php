@@ -1,4 +1,5 @@
 <?php
+  header('Content-type: text/html; charset=utf-8');
 
   include 'spamcheckDBvariable.php';
   /*this file is not included and should contain the following
@@ -100,9 +101,14 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form fields and remove whitespace.
-    $name = trim($_POST['name']);
+    $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $message = trim($_POST['message']);
+    $message = filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING);
+
+    $name = strip_tags($name);
+    $email = strip_tags($email);
+    $message = strip_tags($message);
+
 
     if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
       // Set a 400 (bad request) response code and exit.
@@ -145,7 +151,7 @@
 //RECAPTCA END
 
     $recipient = $mailto;
-    $subject = "Arnoldson.net from " . $name;
+    $subject = $domain . " from " . $name;
     $email_content = "Name: " . $name . "\r\n";
     $email_content .= "Email: " . $email . "\r\n\r\n";
     $email_content .= "Message:\r\n" . $message . "\r\n";
