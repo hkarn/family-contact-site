@@ -57,7 +57,7 @@
   <section class="contact">
     <h3 class="center">Contact us</h3>
     <?php
-      include 'php/spamcheckDBvariable.php';
+      date_default_timezone_set('Europe/Stockholm');
       include 'includes/contact-form.php';
     ?>
     <p class="center"><a href="https://arnoldson.net/files/keys/hka.asc" target="_blank">PGP/GPG key</a></p>
